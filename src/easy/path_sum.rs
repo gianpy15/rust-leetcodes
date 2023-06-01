@@ -1,11 +1,11 @@
-use std::rc::Rc;
 use std::cell::RefCell;
+use std::rc::Rc;
 
 // Definition for a binary tree node.
 pub struct TreeNode {
-  pub val: i32,
-  pub left: Option<Rc<RefCell<TreeNode>>>,
-  pub right: Option<Rc<RefCell<TreeNode>>>,
+    pub val: i32,
+    pub left: Option<Rc<RefCell<TreeNode>>>,
+    pub right: Option<Rc<RefCell<TreeNode>>>,
 }
 
 impl TreeNode {
@@ -13,7 +13,7 @@ impl TreeNode {
         TreeNode {
             val,
             left: None,
-            right: None
+            right: None,
         }
     }
 
@@ -30,15 +30,26 @@ impl TreeNode {
     }
 }
 
-pub struct  Solution;
+pub struct Solution;
 
 impl Solution {
     pub fn has_path_sum(root: Option<Rc<RefCell<TreeNode>>>, target_sum: i32) -> bool {
         root.map_or(false, |node| {
             let borrowed_node = &*node.borrow();
             match borrowed_node {
-                &TreeNode {val, left: None, right: None } => val==target_sum,
-                &TreeNode {val, ref left, ref right} => Self::has_path_sum(left.clone(), target_sum - val) || Self::has_path_sum(right.clone(), target_sum-val)
+                &TreeNode {
+                    val,
+                    left: None,
+                    right: None,
+                } => val == target_sum,
+                &TreeNode {
+                    val,
+                    ref left,
+                    ref right,
+                } => {
+                    Self::has_path_sum(left.clone(), target_sum - val)
+                        || Self::has_path_sum(right.clone(), target_sum - val)
+                }
             }
         })
     }
@@ -62,8 +73,8 @@ mod tests {
                     let node = Rc::new(RefCell::new(TreeNode::new(number)));
                     bfs.push(Rc::clone(&node));
                     Some(Rc::clone(&node))
-                },
-                None => None
+                }
+                None => None,
             };
 
             let right_node = match right_value {
@@ -71,8 +82,8 @@ mod tests {
                     let node = Rc::new(RefCell::new(TreeNode::new(number)));
                     bfs.push(Rc::clone(&node));
                     Some(Rc::clone(&node))
-                },
-                None => None
+                }
+                None => None,
             };
 
             parent.clone().borrow_mut().left = left_node;
@@ -83,7 +94,21 @@ mod tests {
     }
 
     fn values() -> Vec<Option<i32>> {
-        vec![Some(5),Some(4),Some(8),Some(11),None,Some(13),Some(4),Some(7),Some(2),None,None,None,Some(1)]
+        vec![
+            Some(5),
+            Some(4),
+            Some(8),
+            Some(11),
+            None,
+            Some(13),
+            Some(4),
+            Some(7),
+            Some(2),
+            None,
+            None,
+            None,
+            Some(1),
+        ]
     }
 
     #[test]

@@ -1,8 +1,8 @@
-use std::rc::Rc;
 use std::cell::RefCell;
-pub mod valid_parenthesis;
-pub mod palindrome_number;
-pub mod path_sum;
+use std::rc::Rc;
+pub mod easy;
+pub mod medium;
+pub mod hard;
 
 struct MyType {
     value: i32,

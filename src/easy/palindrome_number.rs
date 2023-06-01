@@ -1,9 +1,9 @@
-pub struct  Solution;
+pub struct Solution;
 
 impl Solution {
     pub fn is_palindrome(x: i32) -> bool {
         if x < 0 {
-            return false
+            return false;
         }
 
         let mut value = x;
@@ -29,7 +29,6 @@ mod tests {
         assert!(Solution::is_palindrome(1));
         assert!(Solution::is_palindrome(11));
         assert!(Solution::is_palindrome(12344321));
-    
     }
 
     #[test]

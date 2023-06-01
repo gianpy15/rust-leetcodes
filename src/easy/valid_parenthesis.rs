@@ -39,7 +39,6 @@ impl Solution {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -48,7 +47,6 @@ mod tests {
     fn test_valid_parenthesis() {
         assert!(Solution::is_valid("[]".to_string()));
         assert!(Solution::is_valid("[[()]]{}{{([])()}{}}".to_string()));
-    
     }
 
     #[test]
